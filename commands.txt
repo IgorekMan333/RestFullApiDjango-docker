@@ -1,9 +1,18 @@
 docker-compose up
+create database data
 python manage.py migrate
 python manage.py makemigrations
-python manage.py runserver
- 
+python manage.py runserver 0.0.0.0:8000
 
  
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
+}
 

@@ -2,12 +2,25 @@ version: "3.8"
 
 services:
 
-  web:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    container_name: postgres_db
+
+  app:
     build: .
     volumes:
       - .:/app
     ports:
       - 8000:8000
-    image: rest_api:sqlite
+    image: rest_api:postgreSQL
     container_name: app_container
     command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db 
+   
