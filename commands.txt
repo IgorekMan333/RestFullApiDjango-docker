@@ -1,9 +1,17 @@
 docker-compose up
 python manage.py migrate
 python manage.py makemigrations
-python manage.py runserver
+python manage.py runserver 0.0.0.0:8000
  
-
  
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'data',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'db',
+        'PORT': 3306
+    }
+}
 
